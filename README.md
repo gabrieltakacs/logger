@@ -41,7 +41,7 @@ Class MyClass
 }
 ```
 
-Class which executes `MyClass` - typically an instance of SymfonyCommand
+Class which executes `MyClass` - typically an instance of `SymfonyCommand`
 ```
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
