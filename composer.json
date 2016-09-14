@@ -1,0 +1,11 @@
+{
+    "name": "gabrieltakacs/logger",
+    "autoload": {
+        "psr-4": {
+            "Gabrieltakacs\\Logger\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/console": "*"
+    }
+}
