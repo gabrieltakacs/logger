@@ -5,7 +5,9 @@
             "Gabrieltakacs\\Logger\\": "src/"
         }
     },
+    "minimum-stability": "dev",
     "require": {
-        "symfony/console": "*"
+        "symfony/console": "*",
+        "nesbot/carbon": "^1.21"
     }
 }
