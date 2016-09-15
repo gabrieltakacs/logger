@@ -7,5 +7,4 @@ namespace Gabrieltakacs\Logger;
 
 class FileLoggerException extends \Exception
 {
-
 }

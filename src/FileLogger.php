@@ -62,7 +62,7 @@ class FileLogger implements LoggerInterface
 
     /**
      * @return resource
-     * @throws \App\Log\FileLoggerException
+     * @throws \Gabrieltakacs\Logger\FileLoggerException
      */
     protected function getLogFileHandle()
     {
