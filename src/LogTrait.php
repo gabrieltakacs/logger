@@ -15,7 +15,7 @@ trait LogTrait
     protected $loggers = [];
 
     /**
-     * @param \App\Log\LoggerInterface $logger
+     * @param \Gabrieltakacs\Logger\LoggerInterface $logger
      */
     public function addLogger(LoggerInterface $logger)
     {
@@ -27,11 +27,11 @@ trait LogTrait
      * @param int    $verbosity
      * @param string $tag
      */
-    protected function log($message, $verbosity = OutputInterface::VERBOSITY_NORMAL, $tag = '')
+    protected function log($message, $tag = '', $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
         if (is_array($this->loggers)) {
             foreach ($this->loggers as $logger) { /** @var LoggerInterface $logger */
-                $logger->log($message, $verbosity, $tag);
+                $logger->log($message, $tag, $verbosity);
             }
         }
     }
