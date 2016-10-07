@@ -27,7 +27,7 @@ trait LogTrait
      * @param int    $verbosity
      * @param string $tag
      */
-    protected function log($message, $tag = '', $verbosity = OutputInterface::VERBOSITY_NORMAL)
+    protected function log($message, $tag = LoggerInterface::OUTPUT_COLOR_DEFAULT, $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
         if (is_array($this->loggers)) {
             foreach ($this->loggers as $logger) { /** @var LoggerInterface $logger */

@@ -6,8 +6,8 @@ Usage is very simple. Suppose we have a class called `MyClass` which produces lo
 
 The `log` method accepts following arguments:
 * `$message` - message to be logged (string)
-* `$verbosity` - integer from 0 to 4 (constants in `OutputInterface`), see Options section. Default value is 1 - `VERBOSITY_NORMAL`
 * `$tag` - tag which is used for colorful log messages in console. See Options section. Default value is an empty string.
+* `$verbosity` - integer from 0 to 4 (constants in `OutputInterface`), see Options section. Default value is 1 - `VERBOSITY_NORMAL`
 
 The class which uses `LogTrait` can log using more than one logger. Loggers have to be added to class by `addLogger` method. This package provides following loggers out-of-the-box:
 
@@ -36,7 +36,7 @@ Class MyClass
   
   public function myMethod() 
   {
-    $this->log('My awesome log message', 'info', OutputInterface::VERBOSITY_VERBOSE);
+    $this->log('My awesome log message', LoggerInterface::OUTPUT_COLOR_DEFAULT', OutputInterface::VERBOSITY_VERBOSE);
   }
 }
 ```
@@ -76,10 +76,11 @@ Verbosity has to be an integer value between 0 and 4:
 * 4: `OutputInterface:VERBOSITY_DEBUG`
 
 ### Tag
-Tags are used to produce colorful messages in the console. The tag argument can be an empty string (for non-colorful message) or one of the following strings:
-* `info` for green message
-* `comment` for yellow message
-* `question` for black text on cyan background
-* `error` for white text on red background
+Tags are used to produce colorful messages in the console. The tag argument can be an empty string (for non-colorful message) or one of the `OUTPUT_INTEFACE_*` constants in `LoggerInterface`:
+* `OUTPUT_COLOR_DEFAULT` (empty value) for white text
+* `OUTPUT_COLOR_GREEN` (value `info`) for green message
+* `OUTPUT_COLOR_YELLOW` (value `comment`) for yellow message
+* `OUTPUT_COLOR_CYAN` (value `question`) for black text on cyan background
+* `OUTPUT_COLOR_RED` (value `error`) for white text on red background
 
 For other options, see [Symfony docs](http://symfony.com/doc/current/console/coloring.html)
