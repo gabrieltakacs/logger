@@ -17,7 +17,7 @@ class ConsoleLogger implements LoggerInterface
         $this->output_writer = $output;
     }
 
-    public function log($message, $tag, $verbosity = OutputInterface::VERBOSITY_NORMAL)
+    public function log($message, $tag = LoggerInterface::OUTPUT_COLOR_DEFAULT, $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
         if (!is_null($this->output_writer)) {
             if ($this->output_writer->getVerbosity() >= $verbosity) {

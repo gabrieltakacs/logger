@@ -42,7 +42,7 @@ class FileLogger implements LoggerInterface
      * @param     $tag
      * @param int $verbosity
      */
-    public function log($message, $tag, $verbosity = OutputInterface::VERBOSITY_NORMAL)
+    public function log($message, $tag = LoggerInterface::OUTPUT_COLOR_DEFAULT, $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
         $fh = $this->getLogFileHandle();
         $time = Carbon::create();
