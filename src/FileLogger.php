@@ -44,41 +44,10 @@ class FileLogger implements LoggerInterface
      */
     public function log($message, $tag = LoggerInterface::OUTPUT_COLOR_DEFAULT, $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
-        $fh = $this->getLogFileHandle();
         $time = Carbon::create();
         $message = $time->format('Y-m-d H:i:s') . ' ' . $message . PHP_EOL;
 
-        fputs($fh, $message);
-        fflush($fh);
-        ftruncate($fh, ftell($fh));
-    }
-
-    public function closeLog()
-    {
-        $fh = $this->getLogFileHandle();
-
-        fclose($fh);
-    }
-
-    /**
-     * @return resource
-     * @throws \Gabrieltakacs\Logger\FileLoggerException
-     */
-    protected function getLogFileHandle()
-    {
-        if (is_null($this->fh)) {
-            if (!file_exists($this->directory)) {
-                $result = mkdir($this->directory);
-
-                if (false === $result) {
-                    throw new FileLoggerException('Unable to create log directory: `' . $this->directory . '`!');
-                }
-            }
-
-            $file_full_path = $this->directory . '/' . $this->filename;
-            $this->fh = fopen($file_full_path, 'a+');
-        }
-
-        return $this->fh;
+        $file_full_path = $this->directory . '/' . $this->filename;
+        file_put_contents($file_full_path, $message, FILE_APPEND);
     }
 }
