@@ -35,6 +35,10 @@ class FileLogger implements LoggerInterface
     {
         $this->directory = $directory;
         $this->filename = $file_name;
+
+        if (!file_exists($this->directory)) {
+            mkdir($this->directory);
+        }
     }
 
     /**
@@ -44,10 +48,21 @@ class FileLogger implements LoggerInterface
      */
     public function log($message, $tag = LoggerInterface::OUTPUT_COLOR_DEFAULT, $verbosity = OutputInterface::VERBOSITY_NORMAL)
     {
+        $message_tag = '';
+        if (!empty($tag)) {
+            $message_tag = $tag[0];
+        }
         $time = Carbon::create();
-        $message = $time->format('Y-m-d H:i:s') . ' ' . $message . PHP_EOL;
+
+        if (!empty($message_tag)) {
+            $message = '[' . $message_tag . '] ' . $time->format('Y-m-d H:i:s') . ' ' . $message . PHP_EOL;
+        } else {
+            $message = $time->format('Y-m-d H:i:s') . ' ' . $message . PHP_EOL;
+        }
 
         $file_full_path = $this->directory . '/' . $this->filename;
+        $file_full_path = preg_replace('#/+#','/', $file_full_path);
+
         file_put_contents($file_full_path, $message, FILE_APPEND);
     }
 }
